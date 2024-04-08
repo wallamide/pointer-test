@@ -1,0 +1,19 @@
+[target.'cfg(all(target_arch = "arm", target_os = "none"))']
+runner = [
+  # use to load with a probe
+  "probe-run",
+  "--chip",
+  "nRF52840_xxAA",
+  # use for uf2 -- work in progress
+  # "elf2uf2-rs",
+  # "-d",
+  "--log-format",
+  "{t} [ {L}] {f}:{l} {s}",
+]
+
+[build]
+target = "thumbv7em-none-eabihf"
+rustflags = ["-Z", "macro-backtrace"]
+
+[env]
+DEFMT_LOG = "debug"
